@@ -4,8 +4,6 @@ import (
 	"github.com/labstack/echo/v4"
 
 	v1 "github.com/chaitin/panda-wiki/api/kb/v1"
-	"github.com/chaitin/panda-wiki/consts"
-	"github.com/chaitin/panda-wiki/domain"
 )
 
 // KBUserList
@@ -56,10 +54,6 @@ func (h *KnowledgeBaseHandler) KBUserInvite(c echo.Context) error {
 		return h.NewResponseWithError(c, "validate request failed", err)
 	}
 
-	if !domain.GetBaseEditionLimitation(c.Request().Context()).AllowAdminPerm && req.Perm != consts.UserKBPermissionFullControl {
-		return h.NewResponseWithError(c, "当前版本不支持管理员分权控制", nil)
-	}
-
 	err := h.usecase.KBUserInvite(c.Request().Context(), req)
 	if err != nil {
 		return h.NewResponseWithError(c, "invite user to kb failed", err)
@@ -86,10 +80,6 @@ func (h *KnowledgeBaseHandler) KBUserUpdate(c echo.Context) error {
 	}
 	if err := c.Validate(&req); err != nil {
 		return h.NewResponseWithError(c, "validate request failed", err)
-	}
-
-	if !domain.GetBaseEditionLimitation(c.Request().Context()).AllowAdminPerm && req.Perm != consts.UserKBPermissionFullControl {
-		return h.NewResponseWithError(c, "当前版本不支持管理员分权控制", nil)
 	}
 
 	err := h.usecase.UpdateUserKB(c.Request().Context(), req)

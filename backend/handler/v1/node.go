@@ -91,7 +91,7 @@ func (h *NodeHandler) CreateNode(c echo.Context) error {
 	id, err := h.usecase.Create(c.Request().Context(), req, authInfo.UserId)
 	if err != nil {
 		if errors.Is(err, domain.ErrMaxNodeLimitReached) {
-			return h.NewResponseWithError(c, "已达到最大文档数量限制，请升级到更高版本", nil)
+			return h.NewResponseWithError(c, "已达到当前知识库最大文档数量限制（10000）", nil)
 		}
 		return h.NewResponseWithError(c, "create node failed", err)
 	}
