@@ -24,9 +24,21 @@ type BaseEditionLimitation struct {
 }
 
 var baseEditionLimitationDefault = BaseEditionLimitation{
-	MaxKb:    1,
-	MaxAdmin: 1,
-	MaxNode:  300,
+	// 0 means unlimited
+	MaxKb:    0,
+	MaxAdmin: 0,
+	MaxNode:  10000,
+
+	// professional features enabled by default
+	AllowAdminPerm:         true,
+	AllowCustomCopyright:   true,
+	AllowCommentAudit:      true,
+	AllowAdvancedBot:       true,
+	AllowWatermark:         true,
+	AllowCopyProtection:    true,
+	AllowOpenAIBotSettings: true,
+	AllowMCPServer:         true,
+	AllowNodeStats:         true,
 }
 
 func GetBaseEditionLimitation(c context.Context) BaseEditionLimitation {

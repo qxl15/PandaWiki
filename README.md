@@ -45,6 +45,16 @@ bash -c "$(curl -fsSLk https://release.baizhi.cloud/panda-wiki/manager.sh)"
 
 > 关于安装与部署的更多细节请参考 [安装 PandaWiki](https://pandawiki.docs.baizhi.cloud/node/01971602-bb4e-7c90-99df-6d3c38cfd6d5)。
 
+### 部署你自己的二开版本（一键）
+
+如果你需要部署当前仓库的二开版本（而非官方托管版本），可以使用仓库内的一键安装脚本：
+
+```bash
+bash scripts/install-custom.sh
+```
+
+部署脚本与说明文档位于 `deploy/custom` 目录。
+
 ### 登录 PandaWiki
 
 在上一步中，安装命令执行结束后，你的终端会输出以下内容。
